@@ -1,4 +1,4 @@
-package blackops.springframework.springpetclinic;
+package blackops.springframework.springpetclinic.model;
 
 import java.time.LocalDate;
 
