@@ -3,9 +3,11 @@ package blackops.springframework.springpetclinic.services.map;
 import blackops.springframework.springpetclinic.model.Owner;
 import blackops.springframework.springpetclinic.model.Pet;
 import blackops.springframework.springpetclinic.services.CrudService;
+import org.springframework.stereotype.Service;
 
 import java.util.Set;
 
+@Service
 public class PetServiceMap extends AbstractMapService<Pet, Long> implements CrudService<Pet, Long> {
     @Override
     public Set<Pet> findAll() {
