@@ -1,6 +1,6 @@
 package blackops.springframework.springpetclinic.model;
 
-public class Speciality {
+public class Speciality extends BaseEntity {
     private String name;
 
     public String getName() {
