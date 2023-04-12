@@ -5,6 +5,7 @@ import blackops.springframework.springpetclinic.model.Pet;
 import blackops.springframework.springpetclinic.services.OwnerService;
 import blackops.springframework.springpetclinic.services.PetService;
 import blackops.springframework.springpetclinic.services.PetTypeservice;
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
 import java.util.Set;
