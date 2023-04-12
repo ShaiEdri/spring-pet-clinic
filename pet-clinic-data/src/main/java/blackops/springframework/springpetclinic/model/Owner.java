@@ -1,13 +1,17 @@
 package blackops.springframework.springpetclinic.model;
 
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
-public class Owner extends Person{
+@Entity
+@Table(name = "owners")
+public class Owner extends Person {
     private String address;
     private String city;
     private String telephone;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "owner")
     private Set<Pet> pets = new HashSet<>();
 
     public String getAddress() {
