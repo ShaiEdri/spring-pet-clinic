@@ -3,10 +3,14 @@ package blackops.springframework.springpetclinic.services.springdatajpa;
 import blackops.springframework.springpetclinic.model.Owner;
 import blackops.springframework.springpetclinic.repositories.OwnerRepository;
 import blackops.springframework.springpetclinic.services.OwnerService;
+import org.springframework.context.annotation.Profile;
+import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
 import java.util.Set;
 
+@Service
+@Profile("springdatajpa")
 public class OwnerServiceJpa implements OwnerService {
     private final OwnerRepository ownerRepository;
 
