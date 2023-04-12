@@ -5,13 +5,13 @@ import blackops.springframework.springpetclinic.model.Speciality;
 import blackops.springframework.springpetclinic.model.Vet;
 import blackops.springframework.springpetclinic.services.SpecialityService;
 import blackops.springframework.springpetclinic.services.VetService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Set;
 
 @Service
 public class VetServiceMap extends AbstractMapService<Vet, Long> implements VetService {
-
   private final SpecialityService specialityService;
 
   public VetServiceMap(SpecialityService specialityService) {

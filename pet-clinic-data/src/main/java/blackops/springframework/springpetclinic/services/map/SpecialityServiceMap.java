@@ -4,9 +4,11 @@ import blackops.springframework.springpetclinic.model.PetType;
 import blackops.springframework.springpetclinic.model.Speciality;
 import blackops.springframework.springpetclinic.services.PetTypeservice;
 import blackops.springframework.springpetclinic.services.SpecialityService;
+import org.springframework.stereotype.Service;
 
 import java.util.Set;
 
+@Service
 public class SpecialityServiceMap extends AbstractMapService<Speciality, Long> implements SpecialityService {
     @Override
     public Set<Speciality> findAll() {
