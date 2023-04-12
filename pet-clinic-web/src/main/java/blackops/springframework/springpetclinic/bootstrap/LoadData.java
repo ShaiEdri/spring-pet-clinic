@@ -1,10 +1,7 @@
 package blackops.springframework.springpetclinic.bootstrap;
 
 import blackops.springframework.springpetclinic.model.*;
-import blackops.springframework.springpetclinic.services.OwnerService;
-import blackops.springframework.springpetclinic.services.PetTypeservice;
-import blackops.springframework.springpetclinic.services.SpecialityService;
-import blackops.springframework.springpetclinic.services.VetService;
+import blackops.springframework.springpetclinic.services.*;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
@@ -15,13 +12,17 @@ public class LoadData implements CommandLineRunner {
     private final OwnerService ownerService;
     private final VetService vetService;
     private final PetTypeservice petTypeservice;
+    private final PetService petService;
     private final SpecialityService specialityService;
+    private final VisitService visitService;
 
-    public LoadData(OwnerService ownerService, VetService vetService, PetTypeservice petTypeservice, SpecialityService specialityService) {
+    public LoadData(OwnerService ownerService, VetService vetService, PetTypeservice petTypeservice, PetService petService, SpecialityService specialityService, VisitService visitService) {
         this.ownerService = ownerService;
         this.vetService = vetService;
         this.petTypeservice = petTypeservice;
+        this.petService = petService;
         this.specialityService = specialityService;
+        this.visitService = visitService;
     }
 
     @Override
@@ -42,15 +43,7 @@ public class LoadData implements CommandLineRunner {
         snake.setName("bear");
         PetType savedBearPtype = petTypeservice.save(bear);
 
-        Pet p1 = new Pet();
-        p1.setPetType(snake);
-        p1.setName("Shimi");
-        p1.setBirthDate(LocalDate.now());
 
-        Pet p2 = new Pet();
-        p2.setPetType(bear);
-        p2.setName("Yossi");
-        p2.setBirthDate(LocalDate.now());
 
         // Specialities
         Speciality s1 = new Speciality();
@@ -66,7 +59,7 @@ public class LoadData implements CommandLineRunner {
         owner1.setLastName("Bitter");
         owner1.setAddress("ben gurion");
         owner1.setCity("Tel aviv");
-        owner1.getPets().add(p1);
+
         ownerService.save(owner1);
 
         Owner owner2 = new Owner();
@@ -74,8 +67,32 @@ public class LoadData implements CommandLineRunner {
         owner2.setLastName("Bitter");
         owner2.setAddress("ben gurion");
         owner2.setCity("Tel aviv");
-        owner2.getPets().add(p2);
+
         ownerService.save(owner2);
+
+        Pet p1 = new Pet();
+        p1.setOwner(owner1);
+        p1.setPetType(snake);
+        p1.setName("Shimi");
+        p1.setBirthDate(LocalDate.now());
+        owner1.getPets().add(p1);
+
+        petService.save(p1);
+
+
+        Visit snakeVisit = new Visit();
+        snakeVisit.setPet(p1);
+        snakeVisit.setDate(LocalDate.now());
+        snakeVisit.setDescription("Back problem");
+
+        visitService.save(snakeVisit);
+
+        Pet p2 = new Pet();
+        p2.setOwner(owner2);
+        p2.setPetType(bear);
+        p2.setName("Yossi");
+        p2.setBirthDate(LocalDate.now());
+        owner2.getPets().add(p2);
 
         Vet vet1 = new Vet();
         vet1.setFirstName("Yakov");
