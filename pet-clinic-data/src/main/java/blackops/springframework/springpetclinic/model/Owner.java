@@ -1,5 +1,7 @@
 package blackops.springframework.springpetclinic.model;
 
+import lombok.Getter;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.HashSet;
