@@ -1,11 +1,14 @@
 package blackops.springframework.springpetclinic.model;
 
+import lombok.NoArgsConstructor;
+
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import java.time.LocalDate;
 
+@NoArgsConstructor
 @Entity
 @Table(name = "visits")
 public class Visit extends BaseEntity{
@@ -14,6 +17,13 @@ public class Visit extends BaseEntity{
     @ManyToOne
     @JoinColumn(name = "pet_id")
     private Pet pet;
+
+    public Visit(Long id, LocalDate date, String description, Pet pet) {
+        super(id);
+        this.date = date;
+        this.description = description;
+        this.pet = pet;
+    }
 
     public LocalDate getDate() {
         return date;

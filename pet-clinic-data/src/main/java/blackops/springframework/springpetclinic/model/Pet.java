@@ -1,14 +1,26 @@
 package blackops.springframework.springpetclinic.model;
 
+import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 
+@NoArgsConstructor
 @Entity
 @Table(name = "pets")
 public class Pet extends BaseEntity {
   private String name;
+
+  public Pet(Long id, String name, PetType petType, Owner owner, LocalDate birthDate, Set<Visit> visits) {
+    super(id);
+    this.name = name;
+    this.petType = petType;
+    this.owner = owner;
+    this.birthDate = birthDate;
+    this.visits = visits;
+  }
 
   @ManyToOne
   @JoinColumn(name = "type_id")
